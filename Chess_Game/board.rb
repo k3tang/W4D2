@@ -1,5 +1,6 @@
 require_relative "piece.rb"
 require_relative "nullpiece.rb"
+require_relative "queen.rb"
 
 class Board
    include Enumerable
@@ -8,20 +9,16 @@ class Board
    attr_accessor :board 
 
     def initialize
-        null_piece = NullPiece.instance
-       @board = Array.new(8){Array.new(8)}
+       @board = Array.new(8){Array.new(8) {NullPiece.instance}}
     #    @current_board = @board.populate
     end
 
     def populate
-        @board[1].each_with_index {|_,i| @board[1,i] = Pawn.new(:W,[1,i])}
-        @board[6].each_with_index {|_,i| @board[6,i] = Pawn.new(:B,[6,i])}
+        # @board[1].each_with_index {|_,i| @board[1,i] = Pawn.new(:W,[1,i])}
+        # @board[6].each_with_index {|_,i| @board[6,i] = Pawn.new(:B,[6,i])}
 
     
-        # color = "white"
-        # case colorq
-        # when "white"
-        #     sym = :W
+      
            @board[0][0] = Rook.new(:W,[0,0])
            @board[0][1] = Knight.new(:W,[0,1])
            @board[0][2] = Bishop.new(:W,[0,2])
@@ -65,7 +62,7 @@ class Board
 
     def each(&prc)
         count = 0
-        while count < self.count
+        while count < self.length
           prc.call(self[count])
           count += 1
         end
@@ -74,6 +71,10 @@ class Board
   
  
 end 
+
+
+#compute move method pass in the object type  and that information from queen. 
+#check if move is valid or not 
 
 
 

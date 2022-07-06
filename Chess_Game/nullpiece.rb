@@ -5,8 +5,7 @@ class NullPiece < Piece
     include Singleton
 
     def initialize
-        super(nil,nil)
-        
+        super(nil,nil) 
     end
 
 end 

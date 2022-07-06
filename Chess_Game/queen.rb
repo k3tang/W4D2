@@ -1,6 +1,7 @@
 require_relative "piece.rb"
 
 class Queen < Piece
+    attr_reader :symbol
     # include Slideable
       def initialize(color, position)
         super(color, position)
@@ -11,6 +12,7 @@ end
 
 
 class Rook < Piece
+     attr_reader :symbol
     #  include Slideable
     def initialize(color, position)
         super(color, position)
@@ -22,6 +24,7 @@ end
 
 
 class Pawn < Piece
+     attr_reader :symbol
 
       def initialize(color, position)
         super(color, position)
@@ -32,7 +35,7 @@ end
 
 
 class Knight < Piece
-
+     attr_reader :symbol
     def initialize(color, position)
         super(color, position)
          color == :W ? @symbol = "\u2658" : @symbol = "\u265E"
@@ -42,6 +45,7 @@ end
 
 
 class King < Piece
+     attr_reader :symbol
 
      def initialize(color, position)
         super(color, position)
@@ -52,6 +56,7 @@ end
 
 
 class Bishop < Piece
+     attr_reader :symbol
     #  include Slideable
     def initialize(color, position)
         super(color, position)
