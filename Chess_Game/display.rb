@@ -15,6 +15,9 @@ class Display
 
     # end
 
-    
+    def render
+       @board.each
+    end
+
 end 
 test = Display.new.render

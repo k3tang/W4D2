@@ -1,5 +1,5 @@
 
-require_relative "board.rb"
+# require_relative "board.rb"
 
 
 
@@ -20,9 +20,9 @@ class Piece
     end 
 
 
-    def empty?
-        self.position == NullPiece.instance
-    end 
+    # def empty?
+    #     self.position == NullPiece.instance
+    # end 
 
 
     def valid_moves #needs to come from child, should return an array of valid moves 

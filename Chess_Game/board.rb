@@ -4,12 +4,12 @@ require_relative "nullpiece.rb"
 class Board
    include Enumerable
 
-   attr_reader :current_board
+#    attr_reader :current_board
    attr_accessor :board 
 
     def initialize
         null_piece = NullPiece.instance
-       @board = Array.new(8){Array.new(8,null_piece)}
+       @board = Array.new(8){Array.new(8)}
     #    @current_board = @board.populate
     end
 
@@ -19,14 +19,14 @@ class Board
 
     
         # color = "white"
-        # case color
+        # case colorq
         # when "white"
         #     sym = :W
            @board[0][0] = Rook.new(:W,[0,0])
            @board[0][1] = Knight.new(:W,[0,1])
            @board[0][2] = Bishop.new(:W,[0,2])
            @board[0][3] = King.new(:W,[0,3])
-           @board[0][4] = Qween.new(:W,[0,4])
+           @board[0][4] = Queen.new(:W,[0,4])
            @board[0][5] = Bishop.new(:W,[0,5])
            @board[0][6] = Knight.new(:W,[0,6])
             @board[0][7] = Rook.new(:W,[0,7])
@@ -35,7 +35,7 @@ class Board
            @board[7][1] = Knight.new(:B,[7,1])
            @board[7][2] = Bishop.new(:B,[7,2])
            @board[7][3] = King.new(:B,[7,3])
-           @board[7][4] = Qween.new(:B,[7,4])
+           @board[7][4] = Queen.new(:B,[7,4])
            @board[7][5] = Bishop.new(:B,[7,5])
            @board[7][6] = Knight.new(:B,[7,6])
             @board[7][7] = Rook.new(:B,[7,7])
@@ -44,36 +44,37 @@ class Board
 
     def [](pos)
         
-        @board[pos[0]][pos[-1]]
+        self.board[pos[0]][pos[-1]]
     end
 
     def []=(pos,val)
-        @board[pos] = val
+        self.board[pos] = val
     end
 
     def move_piece(start_pos,end_pos)
 
-        unless valid_move?(end_pos) && !@board[start_pos].is_a?(NullPiece)
+        unless valid_move?(end_pos) && !self.board[start_pos].is_a?(NullPiece)
             raise "Uh oh, you can't move there"
         end
 
-        piece = @board[start_pos]
-       @board[end_pos] = piece
-       @board[start_pos] = @null_piece
+        piece = self.board[start_pos]
+       self.board[end_pos] = piece
+       self.board[start_pos] = @null_piece
 
     end
 
-    # def each{&prc}
-    #     (0...self.length).each do |i|
-    #         prc.call(self[i])
-    #     end
-    #     self
-    # end
+    def each(&prc)
+        count = 0
+        while count < self.count
+          prc.call(self[count])
+          count += 1
+        end
+        self
+    end
   
  
 end 
 
-b = Board.new
-b.each {|row| puts row}
+
 
 
