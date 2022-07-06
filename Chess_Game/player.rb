@@ -1,6 +1,6 @@
 class Player 
     def initialize(color, display)
-        @color = :B || :W
+        @color = color
         @display = display
     end 
 
