@@ -1,6 +1,7 @@
 class Board
    include Enumerable
-   attr_accessor :board
+   attr_reader :current_board
+   attr_accessor :board 
     def initialize
        @board = Array.new(8){Array.new(8)}
        @current_board = @board
