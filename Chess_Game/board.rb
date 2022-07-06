@@ -1,20 +1,23 @@
+require_relative "piece.rb"
+require_relative "nullpiece.rb"
+
 class Board
    include Enumerable
+
    attr_reader :current_board
    attr_accessor :board 
+
     def initialize
-       @board = Array.new(8){Array.new(8)}
-       @current_board = @board
+        null_piece = NullPiece.instance
+       @board = Array.new(8){Array.new(8,null_piece)}
+    #    @current_board = @board.populate
     end
 
     def populate
         @board[1].each_with_index {|_,i| @board[1,i] = Pawn.new(:W,[1,i])}
         @board[6].each_with_index {|_,i| @board[6,i] = Pawn.new(:B,[6,i])}
 
-        @board[2..5].each_with_index do |row,i| 
-                row.each_with_index {|row,idx| @board[i,idx] = NullPiece.new(:X,[i,idx])}
-        end
-        
+    
         # color = "white"
         # case color
         # when "white"
@@ -56,10 +59,16 @@ class Board
 
         piece = @board[start_pos]
        @board[end_pos] = piece
-       @board[start_pos] = NullPiece.new(:X,start_pos)
+       @board[start_pos] = @null_piece
 
     end
 
+    # def each{&prc}
+    #     (0...self.length).each do |i|
+    #         prc.call(self[i])
+    #     end
+    #     self
+    # end
   
  
 end 
